@@ -1,0 +1,3 @@
+PermitRootLogin yes
+AddressFamily inet
+PermitEmptyPasswords yes
