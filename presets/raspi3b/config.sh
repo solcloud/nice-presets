@@ -18,6 +18,3 @@ export NICE_PRIMARY_DISK_INTERFACE=sd
 export NICE_ARCH=aarch64
 export DISTRO=void
 export DISTRO_ISO=/data/dwn/void-live-x86_64-20210930.iso
-#export NICE_ARCH=arm64
-#export DEBOOTSTRAP_SUITE=stable
-#export DEBOOTSTRAP_MIRROR='https://packages.devuan.org/merged'
