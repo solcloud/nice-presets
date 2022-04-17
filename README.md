@@ -4,3 +4,4 @@
   * Raspberry Pi 3 Model B (arch64)
   * basic QEMU support (networking)
   * VOID packages (base, sshd)
+  * [YouTube](https://youtu.be/3LGnqtkq2Ak) ▶️
