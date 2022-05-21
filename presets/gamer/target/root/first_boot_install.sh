@@ -9,36 +9,20 @@ fc-cache # create /var/cache/fontconfig
 ldconfig --ignore-aux-cache # create /etc/ld.so.cache and /var/cache/ldconfig/aux-cache
 
 fdisk -l
-echo "Create additional partitions, mount it (/data, /home, /code) type exit when done"
+echo '#UUID=bfb6c646-a609-4ea6-841e-1cada65e4c5d /data ext2 nosuid,nodiratime,noatime 0 0' >> /etc/fstab
+echo "Check partitions, resize2fs, fstab, etc. Type exit when done"
 sh
-mkdir -p /data/{dwn,desk,store}
+mkdir -p /data/{dwn,steam}
 
-USERS="dan"
-for user in $USERS; do
-    useradd -m -U -s /bin/bash $user && printf "$user\n$user" | passwd $user
-    echo "" > "/home/$user/.bashrc"
-    echo ". /etc/environment" >> "/home/$user/.bashrc"
-    echo ". /etc/profile" >> "/home/$user/.bashrc"
-    ln -sf "/home/$user/.bashrc" "/home/$user/.bash_profile"
-done
+wget -i nvidia.download
+sh NVIDIA-Linux-*.run
+pacman -Sy steam
 
+useradd -m -U -s /bin/bash dan
+echo "New password for dan"
+passwd dan
 for user in dan; do
-    usermod -aG tty,video,audio,input $user # Allow tty and Xorg (gpu,audio,input) login
-    mkdir -p /home/$user/.config/
-    cp -r /root/.config/* /home/$user/.config/
-    cp /root/.xinitrc /home/$user/
-    rm /home/$user/.bash_profile
-    echo 'trap ec ERR' >> /home/$user/.bashrc
-    printf '
-. ~/.bashrc
-
-if [[ "$(tty)" = "/dev/tty1" ]]; then
-    exec xinit
-fi
-' > /home/$user/.bash_profile
-done
-
-for user in $USERS; do
+    usermod -aG tty,video,audio,input $user
     chown -R $user:$user "/home/$user"
 done
 
@@ -50,26 +34,23 @@ pushd /usr/share/applications || exit 1
     printf '[Desktop Entry]
 Name=Firefox
 Exec=firefox
+Type=Application
 ' > firefox.desktop
 
     printf '[Desktop Entry]
 Name=Steam
 Exec=steam -no-cef-sandbox
+Type=Application
 ' > steam.desktop
 
     chmod o+r *.desktop
 popd
 
-
+# Fix permissions
 chmod -R o-rwx /root/
 chmod -R o+rX /etc/X11/
 chmod -R o+r /etc/pulse/
 chmod -R o+r /usr/share/
+chmod o+r /etc/resolv.conf
 
-rm -rf /lib/udev/rules.d/
-rm -f /lib/udev/*.sh
-
-echo "New password for dan"
-passwd dan
-
-pacman -Sy steam
+echo "Done, pls reboot"

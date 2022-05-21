@@ -1,5 +1,9 @@
 # Presets
 
+* [gamer](presets/gamer)
+  * My ghost desktop gaming preset
+  * NVIDIA 10 series GPU + Intel i5 4th gen CPU
+  * Valve Steam support
 * [raspi3b](presets/raspi3b)
   * Raspberry Pi 3 Model B (arch64)
   * basic QEMU support (networking)
