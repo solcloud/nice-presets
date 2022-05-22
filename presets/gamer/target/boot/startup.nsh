@@ -1,1 +1,0 @@
-\vmlinuz initrd=\initrd nvidia-drm.modeset=1 fbcon=map:0

@@ -16,7 +16,7 @@ mkdir -p /data/{dwn,steam}
 
 wget -i nvidia.download
 sh NVIDIA-Linux-*.run
-pacman -Sy steam
+pacman -Sy --overwrite="*" steam
 
 useradd -m -U -s /bin/bash dan
 echo "New password for dan"
