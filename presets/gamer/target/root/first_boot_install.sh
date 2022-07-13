@@ -39,9 +39,21 @@ Type=Application
 
     printf '[Desktop Entry]
 Name=Steam
-Exec=steam -no-cef-sandbox
+Exec=steam -no-cef-sandbox &> /dev/null
 Type=Application
 ' > steam.desktop
+
+    printf '[Desktop Entry]
+Name=Counter-Strike: Global Offensive
+Exec=steam -no-cef-sandbox steam://rungameid/730 &> /dev/null
+Type=Application
+' > csgo.desktop
+
+    printf '[Desktop Entry]
+Name=TeamSpeak
+Exec=/home/dan/TeamSpeak3-Client-linux_amd64/ts3client_runscript.sh &> /dev/null
+Type=Application
+' > ts.desktop
 
     chmod o+r *.desktop
 popd
