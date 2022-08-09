@@ -13,7 +13,7 @@ bindsym --border button1 [class="(?i)Firefox"] nop
 bindsym $mod+Shift+r [class="(?i)Firefox" instance="Navigator" window_role="browser" window_type="normal"] move --no-auto-back-and-forth container to workspace 1, floating enable, resize set 1380px 1048px, move position center, move down 6px
 
 font pango:monospace 8
-floating_modifier Mod1
+floating_modifier $mod
 bindsym $mod+Tab workspace back_and_forth
 
 # start a terminal
