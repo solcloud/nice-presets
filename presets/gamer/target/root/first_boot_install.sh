@@ -39,7 +39,7 @@ Type=Application
 
     printf '[Desktop Entry]
 Name=Steam
-Exec=steam -no-cef-sandbox &> /dev/null
+Exec=nice -n 15 steam -no-cef-sandbox &> /dev/null
 Type=Application
 ' > steam.desktop
 
